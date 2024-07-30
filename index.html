@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazim's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section" id="section0">
+            <header>
+                <h1>I'm Nazim</h1>
+                <p class="typing-effect"></p>
+            </header>
+        </div>
+        <div class="section" id="section1">
+            <div class="content">
+                <h2>About Me</h2>
+                <p>I am a dedicated web and app developer with a passion for creating efficient and user-friendly digital solutions. My expertise lies in developing innovative projects that enhance user experiences and streamline operations.</p>
+                <div class="social-media">
+                    <a href="https://instagram.com/nazimcp7" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/hypride" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section2">
+            <div class="content">
+                <h2>Projects</h2>
+                <ul>
+                    <li><strong>Readex - Adjustable Quran Stand:</strong> Developed a highly customizable and ergonomic Quran stand designed to cater to the needs of users, offering various adjustments to improve reading comfort.</li>
+                    <li><strong>KML Lib - Advanced Library Management System:</strong> Created an advanced library management system that simplifies library operations, including cataloging, circulation, and member management.</li>
+                    <li><strong>Graphico - Leading Graphic Design Agency:</strong> Led the development of a cutting-edge platform for a top-tier graphic design agency, focusing on delivering high-quality design services to clients.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="content">
+                <h2>Skills</h2>
+                <ul>
+                    <li><strong>Web Development:</strong> HTML, CSS, JavaScript, React, Angular</li>
+                    <li><strong>App Development:</strong> Android, iOS, Flutter</li>
+                    <li><strong>Back-End Technologies:</strong> Node.js, Express, MongoDB, MySQL</li>
+                    <li><strong>Other Skills:</strong> UI/UX Design, Project Management, Agile Methodologies</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section" id="section4">
+            <div class="content">
+                <h2>Experience</h2>
+                <ul>
+                    <li><strong>Web Developer at XYZ Company:</strong> Developed and maintained multiple high-traffic websites. Collaborated with design teams to create seamless user experiences.</li>
+                    <li><strong>App Developer at ABC Corp:</strong> Built and deployed several mobile applications on both Android and iOS platforms. Worked closely with clients to understand their needs and deliver customized solutions.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section" id="section5">
+            <div class="content">
+                <h2>Contact</h2>
+                <p>Feel free to reach out to me for any inquiries or collaborations.</p>
+                <ul>
+                    <li><strong>Email:</strong> nazim@example.com</li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/hypride" target="_blank">Nazim's GitHub</a></li>
+                    <li><strong>Instagram:</strong> <a href="https://instagram.com/nazimcp7" target="_blank">Nazim's Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script>
+        new fullpage('#fullpage', {
+            autoScrolling: true,
+            navigation: true,
+            anchors: ['home', 'about', 'projects', 'skills', 'experience', 'contact'],
+            navigationTooltips: ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'],
+            showActiveTooltip: true,
+            scrollOverflow: true,
+        });
+
+        var typed = new Typed('.typing-effect', {
+            strings: ["Web & App Developer", "Innovative Solutions Creator", "User Experience Designer"],
+            typeSpeed: 50,
+            backSpeed: 25,
+            loop: true
+        });
+    </script>
+</body>
+</html>
