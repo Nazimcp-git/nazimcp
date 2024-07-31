@@ -216,4 +216,7 @@ a:hover {
         padding: 0px 20px; /* Adjusted padding */
         height: 100vh; /* Ensure sections take up full screen height */
     }
+    #fp-nav {
+        display: none !important;
+    }
 }
