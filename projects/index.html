@@ -10,61 +10,86 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Projects</h1>
-        </header>
-        <main>
-            <div class="content">
-                <div class="project-item">
-                    <img src="img/readex.jpg" alt="Readex - Adjustable Quran Stand">
-                    <div class="project-details">
-                        <h2>Readex - Adjustable Quran Stand</h2>
-                        <p>An innovative product designed to make reading the Quran more comfortable by allowing users to adjust the stand's height and angle.</p>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="img/graphico.jpg" alt="Graphico - Leading Graphic Design Agency">
-                    <div class="project-details">
-                        <h2>Graphico - Leading Graphic Design Agency</h2>
-                        <p>A top-notch graphic design agency providing a wide range of design services, from branding and logo design to digital and print media.</p>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="img/kml.jpg" alt="KML Lib - Advanced Library System">
-                    <div class="project-details">
-                        <h2>KML Lib - Advanced Library System</h2>
-                        <p>A comprehensive library management system that simplifies the process of cataloging, borrowing, and returning books, along with fine management.</p>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="img/vion.jpg" alt="Vion Solution - A Complete Digital Solution">
-                    <div class="project-details">
-                        <h2>Vion Solution - A Complete Digital Solution</h2>
-                        <p>A full-service digital solution provider offering web development, app development, and digital marketing services tailored to meet your business needs.</p>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="img/nishan.jpg" alt="Nishan App - A Directory App">
-                    <div class="project-details">
-                        <h2>Nishan App - A Directory App</h2>
-                        <p>An intuitive directory app that helps users find local businesses, services, and amenities quickly and easily.</p>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="img/hid.jpg" alt="Hacker Store - An Online Course Store">
-                    <div class="project-details">
-                        <h2>Hacker Store - An Online Course Store</h2>
-                        <p>An online store offering a wide range of courses on various topics, including programming, cybersecurity, and ethical hacking.</p>
-                    </div>
+    <div id="fullpage">
+        <div class="section">
+            <header>
+                <h1>My Projects</h1>
+                <p>Innovative products and digital solutions across industries.</p>
+                
+            </header>
+        </div>
+        <div class="section">
+            <div class="content project-item">
+                <img src="img/readex.jpg" alt="Readex - Adjustable Quran Stand">
+                <div class="project-details">
+                    <h2>Readex - Adjustable Quran Stand</h2>
+                    <p>An innovative product designed to make reading the Quran more comfortable by allowing users to adjust the stand's height and angle.</p>
                 </div>
             </div>
-        </main>
+        </div>
+        <div class="section">
+            <div class="content project-item">
+                <img src="img/graphico.jpg" alt="Graphico - Leading Graphic Design Agency">
+                <div class="project-details">
+                    <h2>Graphico - Leading Graphic Design Agency</h2>
+                    <p>A top-notch graphic design agency providing a wide range of design services, from branding and logo design to digital and print media.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="content project-item">
+                <img src="img/kml.jpg" alt="KML Lib - Advanced Library System">
+                <div class="project-details">
+                    <h2>KML Lib - Advanced Library System</h2>
+                    <p>A comprehensive library management system that simplifies the process of cataloging, borrowing, and returning books, along with fine management.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="content project-item">
+                <img src="img/vion.jpg" alt="Vion Solution - A Complete Digital Solution">
+                <div class="project-details">
+                    <h2>Vion Solution - A Complete Digital Solution</h2>
+                    <p>A full-service digital solution provider offering web development, app development, and digital marketing services tailored to meet your business needs.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="content project-item">
+                <img src="img/nishan.jpg" alt="Nishan App - A Directory App">
+                <div class="project-details">
+                    <h2>Nishan App - A Directory App</h2>
+                    <p>An intuitive directory app that helps users find local businesses, services, and amenities quickly and easily.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="content project-item">
+                <img src="img/hid.jpg" alt="Hacker Store - An Online Course Store">
+                <div class="project-details">
+                    <h2>Hacker Store - An Online Course Store</h2>
+                    <p>An online store offering a wide range of courses on various topics, including programming, cybersecurity, and ethical hacking.</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+    <script>
+        new fullpage('#fullpage', {
+            autoScrolling: true,
+            navigation: true,
+            anchors: ['project1', 'project2', 'project3', 'project4', 'project5', 'project6', 'project7'],
+            navigationTooltips: ['Readex', 'Graphico', 'KML Lib', 'Vion Solution', 'Nishan App', 'Make Bucks', 'Hacker Store'],
+            showActiveTooltip: false,
+            scrollOverflow: true,
+        });
+    </script>
 </body>
 
 </html>
