@@ -110,58 +110,7 @@ a:hover {
     color: #555;
 }
 
-/* Background Animation */
-.background-animation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
 
-.shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.6;
-}
-
-.shape1 {
-    width: 60px;
-    height: 60px;
-    background-color: #ff0000;
-    top: 10%;
-    left: 20%;
-    animation: moveShape 10s linear infinite;
-}
-
-.shape2 {
-    width: 80px;
-    height: 80px;
-    background-color: #00ff00;
-    top: 50%;
-    left: 70%;
-    animation: moveShape 12s linear infinite;
-}
-
-.shape3 {
-    width: 100px;
-    height: 100px;
-    background-color: #0000ff;
-    top: 30%;
-    left: 40%;
-    animation: moveShape 14s linear infinite;
-}
-
-.shape4 {
-    width: 120px;
-    height: 120px;
-    background-color: #ff00ff;
-    top: 70%;
-    left: 10%;
-    animation: moveShape 16s linear infinite;
-}
 
 @keyframes moveShape {
     0% {
@@ -205,6 +154,150 @@ a:hover {
         opacity: 1;
         transform: translateY(0);
     }
+}
+/* Updated Background Elements for Each Section */
+#section0 .background-elements::before,
+#section0 .background-elements::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: moveUpDown 5s ease-in-out infinite;
+}
+
+#section0 .background-elements::before {
+    top: 10%;
+    left: 20%;
+    width: 60px;
+    height: 60px;
+    animation: moveLeftRight 5s ease-in-out infinite;
+}
+
+#section0 .background-elements::after {
+    top: 60%;
+    left: 70%;
+}
+
+#section1 .background-elements::before,
+#section1 .background-elements::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: moveUpDown 6s ease-in-out infinite;
+}
+
+#section1 .background-elements::before {
+    top: 30%;
+    left: 10%;
+    width: 50px;
+    height: 50px;
+    animation: moveLeftRight 6s ease-in-out infinite;
+}
+
+#section1 .background-elements::after {
+    top: 70%;
+    left: 80%;
+}
+
+#section2 .background-elements::before,
+#section2 .background-elements::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: moveUpDown 7s ease-in-out infinite;
+}
+
+#section2 .background-elements::before {
+    top: 20%;
+    left: 30%;
+    width: 55px;
+    height: 55px;
+    animation: moveLeftRight 7s ease-in-out infinite;
+}
+
+#section2 .background-elements::after {
+    top: 50%;
+    left: 60%;
+}
+
+#section3 .background-elements::before,
+#section3 .background-elements::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: moveUpDown 8s ease-in-out infinite;
+}
+
+#section3 .background-elements::before {
+    top: 15%;
+    left: 25%;
+    width: 45px;
+    height: 45px;
+    animation: moveLeftRight 8s ease-in-out infinite;
+}
+
+#section3 .background-elements::after {
+    top: 65%;
+    left: 75%;
+}
+
+#section4 .background-elements::before,
+#section4 .background-elements::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: moveUpDown 9s ease-in-out infinite;
+}
+
+#section4 .background-elements::before {
+    top: 5%;
+    left: 40%;
+    width: 50px;
+    height: 50px;
+    animation: moveLeftRight 9s ease-in-out infinite;
+}
+
+#section4 .background-elements::after {
+    top: 75%;
+    left: 50%;
+}
+
+#section5 .background-elements::before,
+#section5 .background-elements::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: moveUpDown 10s ease-in-out infinite;
+}
+
+#section5 .background-elements::before {
+    top: 25%;
+    left: 60%;
+    width: 65px;
+    height: 65px;
+    animation: moveLeftRight 10s ease-in-out infinite;
+}
+
+#section5 .background-elements::after {
+    top: 55%;
+    left: 30%;
 }
 
 @media (max-width: 768px){
