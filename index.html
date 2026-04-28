@@ -64,6 +64,11 @@
             transform: translateY(0);
         }
 
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            color: transparent;
+        }
+
         .nav-link {
             font-size: 10px;
             letter-spacing: 0.4em;
@@ -104,7 +109,6 @@
         .keyword { color: #c084fc; }
         .property { color: #818cf8; }
         .string { color: #fb7185; }
-        .comment { color: #475569; font-style: italic; }
 
         /* Section Layouts */
         section { min-height: 100vh; display: flex; align-items: center; padding: 120px 0; }
@@ -155,6 +159,12 @@
             background: var(--accent);
         }
 
+        /* Floating Badge */
+        .sticky-id {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
     </style>
 </head>
 <body>
@@ -166,61 +176,91 @@
         <canvas id="stars"></canvas>
     </div>
 
+    <!-- Sticky Sidebar Identity -->
+    <div class="fixed left-6 bottom-12 z-50 hidden lg:flex flex-col items-center gap-6 mix-blend-difference">
+        <div class="h-20 w-[1px] bg-white/20"></div>
+        <span class="sticky-id text-[10px] tracking-[0.8em] font-bold opacity-40 hover:opacity-100 transition-opacity uppercase">Nazim CP</span>
+    </div>
+
     <!-- Minimal Header -->
     <nav class="fixed top-0 left-0 w-full z-50 px-8 py-10 flex justify-between items-center mix-blend-difference">
-        <div class="text-[10px] font-bold tracking-[0.6em] opacity-80">NAZIM CP</div>
+        <div class="text-[10px] font-bold tracking-[0.6em] opacity-80">NAZIM CP <span class="text-indigo-500">/</span> FULL STACK</div>
         <div class="hidden md:flex space-x-12">
             <a href="#about" class="nav-link">ABOUT</a>
             <a href="#skills" class="nav-link">SKILLS</a>
-            <a href="#experience" class="nav-link">JOURNEY</a>
             <a href="#projects" class="nav-link">WORK</a>
-            <a href="#contact" class="nav-link">HELLO</a>
+            <a href="#contact" class="nav-link">CONTACT</a>
         </div>
     </nav>
 
-    <!-- 01. Hero -->
+    <!-- 01. Hero - Redesigned for Maximum Impact -->
     <section id="home" class="px-8 lg:px-24">
-        <div class="max-w-5xl">
-            <div class="reveal mb-8">
-                <span class="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">Available for projects</span>
+        <div class="max-w-7xl w-full">
+            <div class="reveal mb-12 flex items-center gap-4">
+                <div class="w-12 h-[1px] bg-indigo-500"></div>
+                <span class="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">Engineer & Architect</span>
             </div>
-            <h1 class="text-6xl md:text-9xl font-light tracking-tighter leading-[0.95] reveal">
-                Sculpting <span class="italic text-slate-400">digital</span> <br> 
-                solutions for the <span class="font-bold">modern</span> era.
-            </h1>
-            <div class="mt-16 reveal flex flex-col md:flex-row gap-12 items-start md:items-center">
-                <p class="text-slate-500 max-w-sm text-sm leading-relaxed">
-                    Based in Kerala, India. I translate complex ideas into elegant, high-performance code.
-                </p>
-                <div class="btn-magnetic">
-                    <a href="#projects" class="px-10 py-5 border border-white/10 rounded-full text-[10px] font-bold tracking-widest hover:bg-white hover:text-black transition-all duration-700">
-                        EXPLORE ARCHIVE
-                    </a>
+            
+            <div class="relative">
+                <h2 class="text-6xl md:text-[12rem] font-bold text-outline absolute -top-20 -left-4 -z-10 opacity-30 select-none">NAZIM</h2>
+                <h1 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] reveal">
+                    NAZIM CP<span class="text-indigo-600">.</span><br>
+                    <span class="text-slate-400 font-light italic">Crafting</span> Digital<br>
+                    Excellence.
+                </h1>
+            </div>
+
+            <div class="mt-20 reveal grid md:grid-cols-3 gap-12 items-end">
+                <div class="space-y-4">
+                    <p class="text-slate-500 text-sm leading-relaxed max-w-xs">
+                        Independent Full Stack Developer specializing in high-performance web systems and immersive experiences.
+                    </p>
+                    <div class="flex items-center gap-3 text-emerald-500">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span class="text-[10px] font-bold tracking-widest uppercase">Available for Hire</span>
+                    </div>
+                </div>
+                <div class="md:col-span-2 flex justify-start md:justify-end gap-6">
+                    <div class="btn-magnetic">
+                        <a href="#about" class="px-10 py-5 bg-white text-black rounded-full text-[10px] font-bold tracking-widest hover:bg-indigo-600 hover:text-white transition-all duration-500">
+                            VIEW PROFILE
+                        </a>
+                    </div>
+                    <div class="btn-magnetic">
+                        <a href="#contact" class="px-10 py-5 border border-white/10 rounded-full text-[10px] font-bold tracking-widest hover:bg-white/5 transition-all duration-500">
+                            SAY HELLO
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 02. About Me (with Code Terminal) -->
+    <!-- 02. About Me (Enhanced Spotlight) -->
     <section id="about" class="px-8 lg:px-24 bg-white/[0.01]">
         <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-20 items-center">
             
             <div class="space-y-10 reveal">
-                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">01. About Me</h2>
+                <div class="inline-block px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg">
+                    <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase">The Identity</h2>
+                </div>
                 <h3 class="text-4xl md:text-6xl font-light leading-[1.1]">
-                    Logic meets <br> <span class="text-slate-500 italic">Creativity.</span>
+                    Nazim CP <br> <span class="text-slate-500 italic">Code Architect.</span>
                 </h3>
                 <p class="text-slate-400 text-lg font-light leading-relaxed max-w-xl">
-                    I am a Full Stack Architect who views code as a medium for artistic expression. My work lives at the intersection of robust backend systems and fluid user interfaces.
+                    I translate complex business requirements into seamless, scalable technical solutions. My approach combines the structural integrity of backend engineering with the aesthetic precision of frontend design.
                 </p>
-                <div class="flex gap-10">
+                <div class="grid grid-cols-2 gap-10 py-6 border-y border-white/5">
                     <div>
-                        <span class="block text-2xl font-bold">5+</span>
-                        <span class="text-[10px] text-slate-600 tracking-widest uppercase">Years Exp.</span>
+                        <span class="text-[10px] text-slate-600 tracking-widest uppercase block mb-2">Location</span>
+                        <span class="text-xl font-medium">Kerala, India</span>
                     </div>
                     <div>
-                        <span class="block text-2xl font-bold">50+</span>
-                        <span class="text-[10px] text-slate-600 tracking-widest uppercase">Projects</span>
+                        <span class="text-[10px] text-slate-600 tracking-widest uppercase block mb-2">Specialization</span>
+                        <span class="text-xl font-medium">SaaS & Fintech</span>
                     </div>
                 </div>
             </div>
@@ -232,59 +272,43 @@
                         <div class="dot red"></div>
                         <div class="dot yellow"></div>
                         <div class="dot green"></div>
-                        <div class="ml-4 text-[10px] text-slate-500 tracking-widest font-sans">BIO.TS — VISUAL STUDIO</div>
+                        <div class="ml-4 text-[10px] text-slate-500 tracking-widest font-sans uppercase">manifest.json — VS Code</div>
                     </div>
                     <div class="code-content">
                         <div class="code-line">
                             <span class="line-number">1</span>
-                            <span><span class="keyword">class</span> <span class="property">Developer</span> {</span>
+                            <span>{</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">2</span>
-                            <span>&nbsp;&nbsp;<span class="property">name</span> = <span class="string">'Nazim CP'</span>;</span>
+                            <span>&nbsp;&nbsp;<span class="property">"full_name"</span>: <span class="string">"Nazim CP"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">3</span>
-                            <span>&nbsp;&nbsp;<span class="property">role</span> = <span class="string">'Full Stack Architect'</span>;</span>
+                            <span>&nbsp;&nbsp;<span class="property">"title"</span>: <span class="string">"Full Stack Architect"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">4</span>
-                            <span>&nbsp;&nbsp;<span class="property">location</span> = <span class="string">'Kerala, India'</span>;</span>
+                            <span>&nbsp;&nbsp;<span class="property">"tech_stack"</span>: [</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">5</span>
-                            <span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Next.js"</span>, <span class="string">"Flutter"</span>, <span class="string">"Node"</span></span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">6</span>
-                            <span>&nbsp;&nbsp;<span class="keyword">get</span> <span class="property">philosophy</span>() {</span>
+                            <span>&nbsp;&nbsp;],</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">7</span>
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Clean code is poetry."</span>;</span>
+                            <span>&nbsp;&nbsp;<span class="property">"status"</span>: <span class="string">"Ready for impact"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">8</span>
-                            <span>&nbsp;&nbsp;}</span>
+                            <span>&nbsp;&nbsp;<span class="property">"philosophy"</span>: <span class="string">"Simplicity over Complexity"</span></span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">9</span>
-                            <span></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">10</span>
-                            <span>&nbsp;&nbsp;<span class="property">hobbies</span> = [</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">11</span>
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'UI Design'</span>, <span class="string">'Open Source'</span>, <span class="string">'Coffee'</span></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">12</span>
-                            <span>&nbsp;&nbsp;];</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">13</span>
                             <span>}</span>
                         </div>
                     </div>
@@ -298,7 +322,7 @@
     <section id="skills" class="px-8 lg:px-24">
         <div class="max-w-7xl w-full">
             <div class="mb-20 reveal">
-                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">02. Expertise</h2>
+                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">02. Stack</h2>
                 <div class="h-[1px] w-full bg-white/5"></div>
             </div>
             
@@ -314,7 +338,6 @@
                         <span class="skill-pill">TypeScript</span>
                         <span class="skill-pill">Tailwind CSS</span>
                         <span class="skill-pill">Three.js</span>
-                        <span class="skill-pill">Framer Motion</span>
                     </div>
                 </div>
                 <!-- Backend -->
@@ -328,50 +351,43 @@
                         <span class="skill-pill">PostgreSQL</span>
                         <span class="skill-pill">MongoDB</span>
                         <span class="skill-pill">Firebase</span>
-                        <span class="skill-pill">REST & GraphQL</span>
                     </div>
                 </div>
                 <!-- Tools -->
                 <div class="space-y-8 reveal">
                     <h4 class="text-xl font-bold flex items-center gap-4">
-                        <span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Tools & Design
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Architecture
                     </h4>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-pill">Figma</span>
-                        <span class="skill-pill">Git / GitHub</span>
+                        <span class="skill-pill">System Design</span>
                         <span class="skill-pill">Docker</span>
                         <span class="skill-pill">AWS / Vercel</span>
-                        <span class="skill-pill">Agile Method</span>
-                        <span class="skill-pill">Postman</span>
+                        <span class="skill-pill">Git / CI/CD</span>
+                        <span class="skill-pill">Figma UX</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 04. Experience Timeline -->
+    <!-- 04. Experience -->
     <section id="experience" class="px-8 lg:px-24 bg-white/[0.01]">
         <div class="max-w-4xl w-full">
             <div class="mb-20 reveal">
-                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">03. The Journey</h2>
-                <h3 class="text-4xl font-light">History in the making.</h3>
+                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">03. Career Path</h2>
+                <h3 class="text-4xl font-light">Evolving with Technology.</h3>
             </div>
 
             <div class="space-y-0">
                 <div class="timeline-item relative pl-10 pb-16 reveal">
                     <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2022 — Present</span>
                     <h4 class="text-2xl font-bold">Senior Full Stack Developer</h4>
-                    <p class="text-slate-400 mt-4 leading-relaxed">Leading the development of scalable fintech modules and mentoring junior developers in a fast-paced agile environment.</p>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Developing production-ready modules for enterprise-grade applications, focusing on performance optimization and scalable architecture.</p>
                 </div>
                 <div class="timeline-item relative pl-10 pb-16 reveal">
                     <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2020 — 2022</span>
-                    <h4 class="text-2xl font-bold">UI/UX Engineer</h4>
-                    <p class="text-slate-400 mt-4 leading-relaxed">Focused on creating high-fidelity interactive prototypes and translating them into pixel-perfect React components.</p>
-                </div>
-                <div class="timeline-item relative pl-10 reveal">
-                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2018 — 2020</span>
-                    <h4 class="text-2xl font-bold">Junior Web Developer</h4>
-                    <p class="text-slate-400 mt-4 leading-relaxed">Started my career building custom WordPress themes and exploring the depths of JavaScript and CSS.</p>
+                    <h4 class="text-2xl font-bold">Product Engineer</h4>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Managed end-to-end product delivery from conceptual design to deployment in the SaaS space.</p>
                 </div>
             </div>
         </div>
@@ -388,26 +404,20 @@
             <div class="space-y-0">
                 <div class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Commerce</span>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">E-Commerce</span>
                         <h3 class="text-4xl md:text-6xl font-light">Luxe Mart</h3>
-                        <p class="text-slate-500 max-w-sm text-sm">High-end e-commerce platform with Flutter mobile app and Next.js dashboard.</p>
+                        <p class="text-slate-500 max-w-sm text-sm">Premium marketplace ecosystem built with Next.js and Stripe.</p>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <span class="text-[10px] tracking-widest text-slate-600">REACT / FLUTTER / NODE</span>
-                        <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
-                    </div>
+                    <a href="#" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
                 </div>
 
                 <div class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Analytics</span>
-                        <h3 class="text-4xl md:text-6xl font-light">Nova Flow</h3>
-                        <p class="text-slate-500 max-w-sm text-sm">Real-time data visualization engine for cloud computing monitoring.</p>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Data Flow</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Nova Analytics</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Complex data visualization for infrastructure monitoring.</p>
                     </div>
-                    <div class="flex items-center gap-8">
-                        <span class="text-[10px] tracking-widest text-slate-600">D3.JS / DJANGO / AWS</span>
-                        <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
-                    </div>
+                    <a href="#" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
                 </div>
             </div>
         </div>
@@ -416,27 +426,30 @@
     <!-- 06. Contact -->
     <section id="contact" class="px-8 lg:px-24">
         <div class="max-w-5xl w-full reveal">
-            <h2 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-none mb-12">Talk to <br> <span class="text-indigo-500">me.</span></h2>
+            <h2 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-none mb-12">Nazim <span class="text-indigo-500">CP.</span></h2>
             <div class="grid md:grid-cols-2 gap-20">
                 <div class="space-y-8">
-                    <p class="text-slate-400 text-xl leading-relaxed">Let's create something that people will remember. I'm currently looking for new challenges.</p>
+                    <p class="text-slate-400 text-xl leading-relaxed">Available for freelance and permanent opportunities. Let's build the future together.</p>
                     <div class="space-y-2">
-                        <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Email me at</span>
-                        <a href="mailto:nazimcp@gmail.com" class="text-2xl md:text-4xl font-light block hover:text-indigo-400 transition">nazimcp@gmail.com</a>
+                        <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Direct Line</span>
+                        <a href="mailto:nazimcp@gmail.com" class="text-2xl md:text-4xl font-light block hover:text-indigo-400 transition underline underline-offset-8">nazimcp@gmail.com</a>
                     </div>
                 </div>
                 <div class="flex flex-col justify-end space-y-4 md:items-end">
-                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition">LINKEDIN</a>
-                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition">GITHUB</a>
-                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition">DRIBBBLE</a>
+                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">LinkedIn</a>
+                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">GitHub</a>
+                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">Behance</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="p-10 flex justify-between items-center text-[9px] font-bold tracking-[0.5em] text-slate-700 uppercase border-t border-white/5">
-        <span>Nazim CP — Portfolio 2024</span>
-        <span>Kerala, India</span>
+    <footer class="p-10 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold tracking-[0.5em] text-slate-700 uppercase border-t border-white/5 gap-4">
+        <span>© 2024 Nazim CP — All Rights Reserved</span>
+        <div class="flex gap-8">
+            <a href="#home">Back to Top</a>
+            <span>Kerala, India</span>
+        </div>
     </footer>
 
     <script>
@@ -447,7 +460,6 @@
             dot.style.left = `${e.clientX}px`;
             dot.style.top = `${e.clientY}px`;
             
-            // Smoother outline follow
             setTimeout(() => {
                 outline.style.left = `${e.clientX - 20}px`;
                 outline.style.top = `${e.clientY - 20}px`;
@@ -457,21 +469,18 @@
             document.documentElement.style.setProperty('--m-y', `${(e.clientY / window.innerHeight) * 100}%`);
         });
 
-        // Magnetic Effect Logic
-        const magnets = document.querySelectorAll('.btn-magnetic');
-        magnets.forEach((m) => {
+        // Magnetic Effect
+        document.querySelectorAll('.btn-magnetic').forEach((m) => {
             m.addEventListener('mousemove', (e) => {
                 const rect = m.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width/2;
                 const y = e.clientY - rect.top - rect.height/2;
-                m.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+                m.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px)`;
                 outline.style.transform = 'scale(1.5)';
-                outline.style.borderColor = 'rgba(255,255,255,1)';
             });
             m.addEventListener('mouseleave', () => {
                 m.style.transform = 'translate(0, 0)';
                 outline.style.transform = 'scale(1)';
-                outline.style.borderColor = 'rgba(255,255,255,0.3)';
             });
         });
 
@@ -489,7 +498,7 @@
                 x: Math.random() * width,
                 y: Math.random() * height,
                 size: Math.random() * 1.5,
-                speed: Math.random() * 0.2 + 0.05
+                speed: Math.random() * 0.15 + 0.05
             }));
         }
 
@@ -511,14 +520,14 @@
         drawStars();
         window.addEventListener('resize', initStars);
 
-        // Reveal Logic
+        // Reveal Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 
-        // Hover scale for interactive elements
+        // Hover scale
         document.querySelectorAll('a, .skill-pill, .project-card, .code-window').forEach(el => {
             el.addEventListener('mouseenter', () => outline.style.transform = 'scale(1.2)');
             el.addEventListener('mouseleave', () => outline.style.transform = 'scale(1)');
