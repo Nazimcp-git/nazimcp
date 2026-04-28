@@ -3,101 +3,525 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I'm Nazim</title>
-    <link rel="shortcut icon" href="icon.jpg" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css">
+    <title>Nazim CP | Minimalist Full Stack Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #6366f1;
+            --bg: #030712;
+            --glass: rgba(255, 255, 255, 0.02);
+            --code-bg: #0a0f1e;
+        }
+
+        * {
+            cursor: none !important;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Custom Cursor */
+        #cursor-dot {
+            width: 8px; height: 8px;
+            background: white;
+            position: fixed; pointer-events: none;
+            z-index: 9999; border-radius: 50%;
+            transition: transform 0.1s;
+        }
+        #cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+            position: fixed; pointer-events: none;
+            z-index: 9998; border-radius: 50%;
+            transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Ambient Background */
+        #canvas-container {
+            position: fixed; inset: 0; z-index: -1;
+            background: radial-gradient(circle at var(--m-x, 50%) var(--m-y, 50%), rgba(99, 102, 241, 0.06) 0%, transparent 40%);
+        }
+
+        /* Typography & Effects */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-link {
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            color: rgba(255,255,255,0.4);
+            transition: color 0.4s;
+        }
+        .nav-link:hover { color: white; }
+
+        /* Code Terminal Styles */
+        .code-window {
+            background: var(--code-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.5);
+            font-family: 'Fira Code', monospace;
+            overflow: hidden;
+        }
+        .code-header {
+            background: rgba(255,255,255,0.03);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        
+        .code-content {
+            padding: 30px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #94a3b8;
+        }
+        .code-line { display: flex; gap: 20px; }
+        .line-number { color: #334155; text-align: right; width: 25px; user-select: none; }
+        .keyword { color: #c084fc; }
+        .property { color: #818cf8; }
+        .string { color: #fb7185; }
+        .comment { color: #475569; font-style: italic; }
+
+        /* Section Layouts */
+        section { min-height: 100vh; display: flex; align-items: center; padding: 120px 0; }
+
+        /* Project Cards */
+        .project-card {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.5s ease;
+        }
+        .project-card:hover {
+            background: rgba(255,255,255,0.02);
+            padding-left: 20px;
+            border-bottom-color: var(--accent);
+        }
+
+        /* Magnetic Button */
+        .btn-magnetic {
+            display: inline-block;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Skill Pills */
+        .skill-pill {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        .skill-pill:hover {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: rgba(255,255,255,0.05);
+        }
+        .timeline-item:hover::before {
+            background: var(--accent);
+        }
+
+    </style>
 </head>
 <body>
-    <div id="fullpage">
-        <div class="section" id="section0">
-            <header>
-                <h1>I'm Nazim</h1>
-                <p class="typing-effect"></p>
-            </header>
-            <div class="background-elements"></div>
-        </div>
-        <div class="section" id="section1">
-            <div class="content">
-                <h2>About Me</h2>
-                <p>I am a dedicated web and app developer with a passion for creating efficient and user-friendly digital solutions. My expertise lies in developing innovative projects that enhance user experiences and streamline operations.</p>
-                <div class="social-media">
-                    <a href="https://instagram.com/nazimcp7" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/hypride" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://t.me/" target="_blank"><i class="fab fa-telegram"></i></a>
-                </div>
-            </div>
-            <div class="background-elements"></div>
-        </div>
-        <div class="section" id="section2">
-            <div class="content">
-                <h2>Projects</h2>
-                <ul>
-                    <li><strong>Readex - Adjustable Quran Stand:</strong> A customizable Quran stand designed for user comfort.</li>
-                    <li><strong>Graphico - Leading Graphic Design Agency:</strong> Developed a platform for delivering top-tier design services.</li>
-                    <li><a href="/nazimcp/projects/">See More <i class="fas fa-arrow-right"></i></a></li>
-                </ul>
-            </div>
-            <div class="background-elements"></div>
-        </div>
-        <div class="section" id="section3">
-            <div class="content">
-                <h2>Skills</h2>
-                <ul>
-                    <li><strong>Web Development:</strong> HTML, CSS, JavaScript, React</li>
-                    <li><strong>App Development:</strong> Android, Desktop, Flutter</li>
-                    <li><strong>Back-End Technologies:</strong> Node.js, Firebase, MySQL</li>
-                    <li><strong>Other Skills:</strong> UI/UX Design, Project Management</li>
-                </ul>
-            </div>
-            <div class="background-elements"></div>
-        </div>
-        <div class="section" id="section4">
-            <div class="content">
-                <h2>Experience</h2>
-                <ul>
-                    <li><strong>Chief Developer at Graphico:</strong> Developed and maintained high-traffic websites and collaborated with design teams.</li>
-                    <li><strong>App Developer at Vion Solutions:</strong> Built and deployed mobile applications on Android and iOS platforms.</li>
-                    <li><a href="/nazimcp/experience/">See More <i class="fas fa-arrow-right"></i></a></li>
-                </ul>
-            </div>
-            <div class="background-elements"></div>
-        </div>
-        <div class="section" id="section5">
-            <div class="content">
-                <h2>Contact</h2>
-                <p>Feel free to reach out to me for any inquiries or collaborations.</p>
-                <ul>
-                    <li><strong>Email:</strong> <a href="mailto:nazimcpunity@gmail.com" target="_blank">nazimcpunity@example.com</a></li>
-                    <li><strong>GitHub:</strong> <a href="https://github.com/hypride" target="_blank">Nazim's GitHub</a></li>
-                    <li><strong>Instagram:</strong> <a href="https://instagram.com/nazimcp7" target="_blank">Nazim's Instagram</a></li>
-                </ul>
-            </div>
-            <div class="background-elements"></div>
-        </div>
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <div id="canvas-container">
+        <canvas id="stars"></canvas>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <!-- Minimal Header -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-8 py-10 flex justify-between items-center mix-blend-difference">
+        <div class="text-[10px] font-bold tracking-[0.6em] opacity-80">NAZIM CP</div>
+        <div class="hidden md:flex space-x-12">
+            <a href="#about" class="nav-link">ABOUT</a>
+            <a href="#skills" class="nav-link">SKILLS</a>
+            <a href="#experience" class="nav-link">JOURNEY</a>
+            <a href="#projects" class="nav-link">WORK</a>
+            <a href="#contact" class="nav-link">HELLO</a>
+        </div>
+    </nav>
+
+    <!-- 01. Hero -->
+    <section id="home" class="px-8 lg:px-24">
+        <div class="max-w-5xl">
+            <div class="reveal mb-8">
+                <span class="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">Available for projects</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl font-light tracking-tighter leading-[0.95] reveal">
+                Sculpting <span class="italic text-slate-400">digital</span> <br> 
+                solutions for the <span class="font-bold">modern</span> era.
+            </h1>
+            <div class="mt-16 reveal flex flex-col md:flex-row gap-12 items-start md:items-center">
+                <p class="text-slate-500 max-w-sm text-sm leading-relaxed">
+                    Based in Kerala, India. I translate complex ideas into elegant, high-performance code.
+                </p>
+                <div class="btn-magnetic">
+                    <a href="#projects" class="px-10 py-5 border border-white/10 rounded-full text-[10px] font-bold tracking-widest hover:bg-white hover:text-black transition-all duration-700">
+                        EXPLORE ARCHIVE
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02. About Me (with Code Terminal) -->
+    <section id="about" class="px-8 lg:px-24 bg-white/[0.01]">
+        <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-20 items-center">
+            
+            <div class="space-y-10 reveal">
+                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">01. About Me</h2>
+                <h3 class="text-4xl md:text-6xl font-light leading-[1.1]">
+                    Logic meets <br> <span class="text-slate-500 italic">Creativity.</span>
+                </h3>
+                <p class="text-slate-400 text-lg font-light leading-relaxed max-w-xl">
+                    I am a Full Stack Architect who views code as a medium for artistic expression. My work lives at the intersection of robust backend systems and fluid user interfaces.
+                </p>
+                <div class="flex gap-10">
+                    <div>
+                        <span class="block text-2xl font-bold">5+</span>
+                        <span class="text-[10px] text-slate-600 tracking-widest uppercase">Years Exp.</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-bold">50+</span>
+                        <span class="text-[10px] text-slate-600 tracking-widest uppercase">Projects</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- In-built Code Terminal Section -->
+            <div class="reveal delay-200">
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                        <div class="ml-4 text-[10px] text-slate-500 tracking-widest font-sans">BIO.TS — VISUAL STUDIO</div>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line">
+                            <span class="line-number">1</span>
+                            <span><span class="keyword">class</span> <span class="property">Developer</span> {</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">2</span>
+                            <span>&nbsp;&nbsp;<span class="property">name</span> = <span class="string">'Nazim CP'</span>;</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">3</span>
+                            <span>&nbsp;&nbsp;<span class="property">role</span> = <span class="string">'Full Stack Architect'</span>;</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">4</span>
+                            <span>&nbsp;&nbsp;<span class="property">location</span> = <span class="string">'Kerala, India'</span>;</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">5</span>
+                            <span></span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">6</span>
+                            <span>&nbsp;&nbsp;<span class="keyword">get</span> <span class="property">philosophy</span>() {</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">7</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Clean code is poetry."</span>;</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">8</span>
+                            <span>&nbsp;&nbsp;}</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">9</span>
+                            <span></span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">10</span>
+                            <span>&nbsp;&nbsp;<span class="property">hobbies</span> = [</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">11</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">'UI Design'</span>, <span class="string">'Open Source'</span>, <span class="string">'Coffee'</span></span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">12</span>
+                            <span>&nbsp;&nbsp;];</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">13</span>
+                            <span>}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 03. Skills Detail -->
+    <section id="skills" class="px-8 lg:px-24">
+        <div class="max-w-7xl w-full">
+            <div class="mb-20 reveal">
+                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">02. Expertise</h2>
+                <div class="h-[1px] w-full bg-white/5"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-16">
+                <!-- Frontend -->
+                <div class="space-y-8 reveal">
+                    <h4 class="text-xl font-bold flex items-center gap-4">
+                        <span class="w-2 h-2 bg-indigo-500 rounded-full"></span> Frontend
+                    </h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill">React / Next.js</span>
+                        <span class="skill-pill">Flutter</span>
+                        <span class="skill-pill">TypeScript</span>
+                        <span class="skill-pill">Tailwind CSS</span>
+                        <span class="skill-pill">Three.js</span>
+                        <span class="skill-pill">Framer Motion</span>
+                    </div>
+                </div>
+                <!-- Backend -->
+                <div class="space-y-8 reveal">
+                    <h4 class="text-xl font-bold flex items-center gap-4">
+                        <span class="w-2 h-2 bg-rose-500 rounded-full"></span> Backend
+                    </h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill">Node.js / Express</span>
+                        <span class="skill-pill">Python / Django</span>
+                        <span class="skill-pill">PostgreSQL</span>
+                        <span class="skill-pill">MongoDB</span>
+                        <span class="skill-pill">Firebase</span>
+                        <span class="skill-pill">REST & GraphQL</span>
+                    </div>
+                </div>
+                <!-- Tools -->
+                <div class="space-y-8 reveal">
+                    <h4 class="text-xl font-bold flex items-center gap-4">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Tools & Design
+                    </h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-pill">Figma</span>
+                        <span class="skill-pill">Git / GitHub</span>
+                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">AWS / Vercel</span>
+                        <span class="skill-pill">Agile Method</span>
+                        <span class="skill-pill">Postman</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 04. Experience Timeline -->
+    <section id="experience" class="px-8 lg:px-24 bg-white/[0.01]">
+        <div class="max-w-4xl w-full">
+            <div class="mb-20 reveal">
+                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">03. The Journey</h2>
+                <h3 class="text-4xl font-light">History in the making.</h3>
+            </div>
+
+            <div class="space-y-0">
+                <div class="timeline-item relative pl-10 pb-16 reveal">
+                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2022 — Present</span>
+                    <h4 class="text-2xl font-bold">Senior Full Stack Developer</h4>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Leading the development of scalable fintech modules and mentoring junior developers in a fast-paced agile environment.</p>
+                </div>
+                <div class="timeline-item relative pl-10 pb-16 reveal">
+                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2020 — 2022</span>
+                    <h4 class="text-2xl font-bold">UI/UX Engineer</h4>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Focused on creating high-fidelity interactive prototypes and translating them into pixel-perfect React components.</p>
+                </div>
+                <div class="timeline-item relative pl-10 reveal">
+                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2018 — 2020</span>
+                    <h4 class="text-2xl font-bold">Junior Web Developer</h4>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Started my career building custom WordPress themes and exploring the depths of JavaScript and CSS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05. Projects Archive -->
+    <section id="projects" class="px-8 lg:px-24">
+        <div class="w-full">
+            <div class="mb-24 reveal">
+                <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">04. Selected Work</h2>
+                <div class="h-[1px] w-full bg-white/5"></div>
+            </div>
+
+            <div class="space-y-0">
+                <div class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Commerce</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Luxe Mart</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">High-end e-commerce platform with Flutter mobile app and Next.js dashboard.</p>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <span class="text-[10px] tracking-widest text-slate-600">REACT / FLUTTER / NODE</span>
+                        <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                    </div>
+                </div>
+
+                <div class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Analytics</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Nova Flow</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Real-time data visualization engine for cloud computing monitoring.</p>
+                    </div>
+                    <div class="flex items-center gap-8">
+                        <span class="text-[10px] tracking-widest text-slate-600">D3.JS / DJANGO / AWS</span>
+                        <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06. Contact -->
+    <section id="contact" class="px-8 lg:px-24">
+        <div class="max-w-5xl w-full reveal">
+            <h2 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-none mb-12">Talk to <br> <span class="text-indigo-500">me.</span></h2>
+            <div class="grid md:grid-cols-2 gap-20">
+                <div class="space-y-8">
+                    <p class="text-slate-400 text-xl leading-relaxed">Let's create something that people will remember. I'm currently looking for new challenges.</p>
+                    <div class="space-y-2">
+                        <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Email me at</span>
+                        <a href="mailto:nazimcp@gmail.com" class="text-2xl md:text-4xl font-light block hover:text-indigo-400 transition">nazimcp@gmail.com</a>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-end space-y-4 md:items-end">
+                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition">LINKEDIN</a>
+                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition">GITHUB</a>
+                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition">DRIBBBLE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="p-10 flex justify-between items-center text-[9px] font-bold tracking-[0.5em] text-slate-700 uppercase border-t border-white/5">
+        <span>Nazim CP — Portfolio 2024</span>
+        <span>Kerala, India</span>
+    </footer>
+
     <script>
-        new fullpage('#fullpage', {
-            autoScrolling: true,
-            navigation: true,
-            anchors: ['home', 'about', 'projects', 'skills', 'experience', 'contact'],
-            navigationTooltips: ['Home', 'About', 'Projects', 'Skills', 'Experience', 'Contact'],
-            showActiveTooltip: false,
-            scrollOverflow: true,
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            
+            // Smoother outline follow
+            setTimeout(() => {
+                outline.style.left = `${e.clientX - 20}px`;
+                outline.style.top = `${e.clientY - 20}px`;
+            }, 50);
+
+            document.documentElement.style.setProperty('--m-x', `${(e.clientX / window.innerWidth) * 100}%`);
+            document.documentElement.style.setProperty('--m-y', `${(e.clientY / window.innerHeight) * 100}%`);
         });
 
-        var typed = new Typed('.typing-effect', {
-            strings: ["Web Developer", "App Developer", "Back-end Developer", "Project Manager"],
-            typeSpeed: 50,
-            backSpeed: 25,
-            loop: true
+        // Magnetic Effect Logic
+        const magnets = document.querySelectorAll('.btn-magnetic');
+        magnets.forEach((m) => {
+            m.addEventListener('mousemove', (e) => {
+                const rect = m.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width/2;
+                const y = e.clientY - rect.top - rect.height/2;
+                m.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+                outline.style.transform = 'scale(1.5)';
+                outline.style.borderColor = 'rgba(255,255,255,1)';
+            });
+            m.addEventListener('mouseleave', () => {
+                m.style.transform = 'translate(0, 0)';
+                outline.style.transform = 'scale(1)';
+                outline.style.borderColor = 'rgba(255,255,255,0.3)';
+            });
+        });
+
+        // Background Stars
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let width, height, stars = [];
+
+        function initStars() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            stars = Array.from({length: 80}, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.5,
+                speed: Math.random() * 0.2 + 0.05
+            }));
+        }
+
+        function drawStars() {
+            ctx.clearRect(0,0,width,height);
+            ctx.fillStyle = "white";
+            stars.forEach(s => {
+                s.y -= s.speed;
+                if(s.y < 0) s.y = height;
+                ctx.globalAlpha = 0.2;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+                ctx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+
+        initStars();
+        drawStars();
+        window.addEventListener('resize', initStars);
+
+        // Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+        // Hover scale for interactive elements
+        document.querySelectorAll('a, .skill-pill, .project-card, .code-window').forEach(el => {
+            el.addEventListener('mouseenter', () => outline.style.transform = 'scale(1.2)');
+            el.addEventListener('mouseleave', () => outline.style.transform = 'scale(1)');
         });
     </script>
 </body>
