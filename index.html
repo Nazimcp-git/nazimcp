@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nazim CP | Minimalist Full Stack Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --accent: #6366f1;
@@ -27,29 +30,41 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             font-family: 'Space Grotesk', sans-serif;
         }
 
         /* Custom Cursor */
         #cursor-dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             background: white;
-            position: fixed; pointer-events: none;
-            z-index: 9999; border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
             transition: transform 0.1s;
         }
+
         #cursor-outline {
-            width: 40px; height: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
-            position: fixed; pointer-events: none;
-            z-index: 9998; border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            border-radius: 50%;
             transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         /* Ambient Background */
         #canvas-container {
-            position: fixed; inset: 0; z-index: -1;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
             background: radial-gradient(circle at var(--m-x, 50%) var(--m-y, 50%), rgba(99, 102, 241, 0.06) 0%, transparent 40%);
         }
 
@@ -59,67 +74,112 @@
             transform: translateY(40px);
             transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
         .text-outline {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
             color: transparent;
         }
 
         .nav-link {
             font-size: 10px;
             letter-spacing: 0.4em;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             transition: color 0.4s;
         }
-        .nav-link:hover { color: white; }
+
+        .nav-link:hover {
+            color: white;
+        }
 
         /* Code Terminal Styles */
         .code-window {
             background: var(--code-bg);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.5);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
             font-family: 'Fira Code', monospace;
             overflow: hidden;
         }
+
         .code-header {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             padding: 12px 20px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
-        .red { background: #ff5f56; }
-        .yellow { background: #ffbd2e; }
-        .green { background: #27c93f; }
-        
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .red {
+            background: #ff5f56;
+        }
+
+        .yellow {
+            background: #ffbd2e;
+        }
+
+        .green {
+            background: #27c93f;
+        }
+
         .code-content {
             padding: 30px;
             font-size: 14px;
             line-height: 1.8;
             color: #94a3b8;
         }
-        .code-line { display: flex; gap: 20px; }
-        .line-number { color: #334155; text-align: right; width: 25px; user-select: none; }
-        .keyword { color: #c084fc; }
-        .property { color: #818cf8; }
-        .string { color: #fb7185; }
+
+        .code-line {
+            display: flex;
+            gap: 20px;
+        }
+
+        .line-number {
+            color: #334155;
+            text-align: right;
+            width: 25px;
+            user-select: none;
+        }
+
+        .keyword {
+            color: #c084fc;
+        }
+
+        .property {
+            color: #818cf8;
+        }
+
+        .string {
+            color: #fb7185;
+        }
 
         /* Section Layouts */
-        section { min-height: 100vh; display: flex; align-items: center; padding: 120px 0; }
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0;
+        }
 
         /* Project Cards */
         .project-card {
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.5s ease;
         }
+
         .project-card:hover {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             padding-left: 20px;
             border-bottom-color: var(--accent);
         }
@@ -134,12 +194,13 @@
         /* Skill Pills */
         .skill-pill {
             background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 8px 16px;
             border-radius: 100px;
             font-size: 12px;
             transition: all 0.3s;
         }
+
         .skill-pill:hover {
             border-color: var(--accent);
             background: rgba(99, 102, 241, 0.1);
@@ -153,8 +214,9 @@
             top: 0;
             width: 1px;
             height: 100%;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
         }
+
         .timeline-item:hover::before {
             background: var(--accent);
         }
@@ -164,9 +226,9 @@
             writing-mode: vertical-rl;
             transform: rotate(180deg);
         }
-
     </style>
 </head>
+
 <body>
 
     <div id="cursor-dot"></div>
@@ -179,12 +241,15 @@
     <!-- Sticky Sidebar Identity -->
     <div class="fixed left-6 bottom-12 z-50 hidden lg:flex flex-col items-center gap-6 mix-blend-difference">
         <div class="h-20 w-[1px] bg-white/20"></div>
-        <span class="sticky-id text-[10px] tracking-[0.8em] font-bold opacity-40 hover:opacity-100 transition-opacity uppercase">Nazim CP</span>
+        <span
+            class="sticky-id text-[10px] tracking-[0.8em] font-bold opacity-40 hover:opacity-100 transition-opacity uppercase">Nazim
+            CP</span>
     </div>
 
     <!-- Minimal Header -->
     <nav class="fixed top-0 left-0 w-full z-50 px-8 py-10 flex justify-between items-center mix-blend-difference">
-        <div class="text-[10px] font-bold tracking-[0.6em] opacity-80">NAZIM CP <span class="text-indigo-500">/</span> FULL STACK</div>
+        <div class="text-[10px] font-bold tracking-[0.6em] opacity-80">NAZIM CP <span class="text-indigo-500">/</span>
+            FULL STACK</div>
         <div class="hidden md:flex space-x-12">
             <a href="#about" class="nav-link">ABOUT</a>
             <a href="#skills" class="nav-link">SKILLS</a>
@@ -200,9 +265,11 @@
                 <div class="w-12 h-[1px] bg-indigo-500"></div>
                 <span class="text-xs font-bold tracking-[0.5em] text-indigo-500 uppercase">Engineer & Architect</span>
             </div>
-            
+
             <div class="relative">
-                <h2 class="text-6xl md:text-[12rem] font-bold text-outline absolute -top-20 -left-4 -z-10 opacity-30 select-none">NAZIM</h2>
+                <h2
+                    class="text-6xl md:text-[12rem] font-bold text-outline absolute -top-20 -left-4 -z-10 opacity-30 select-none">
+                    NAZIM</h2>
                 <h1 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] reveal">
                     NAZIM CP<span class="text-indigo-600">.</span><br>
                     <span class="text-slate-400 font-light italic">Crafting</span> Digital<br>
@@ -213,11 +280,13 @@
             <div class="mt-20 reveal grid md:grid-cols-3 gap-12 items-end">
                 <div class="space-y-4">
                     <p class="text-slate-500 text-sm leading-relaxed max-w-xs">
-                        Independent Full Stack Developer specializing in high-performance web systems and immersive experiences.
+                        Independent Full Stack Developer specializing in high-performance web systems and immersive
+                        experiences.
                     </p>
                     <div class="flex items-center gap-3 text-emerald-500">
                         <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
                         <span class="text-[10px] font-bold tracking-widest uppercase">Available for Hire</span>
@@ -225,12 +294,14 @@
                 </div>
                 <div class="md:col-span-2 flex justify-start md:justify-end gap-6">
                     <div class="btn-magnetic">
-                        <a href="#about" class="px-10 py-5 bg-white text-black rounded-full text-[10px] font-bold tracking-widest hover:bg-indigo-600 hover:text-white transition-all duration-500">
+                        <a href="#about"
+                            class="px-10 py-5 bg-white text-black rounded-full text-[10px] font-bold tracking-widest hover:bg-indigo-600 hover:text-white transition-all duration-500">
                             VIEW PROFILE
                         </a>
                     </div>
                     <div class="btn-magnetic">
-                        <a href="#contact" class="px-10 py-5 border border-white/10 rounded-full text-[10px] font-bold tracking-widest hover:bg-white/5 transition-all duration-500">
+                        <a href="#contact"
+                            class="px-10 py-5 border border-white/10 rounded-full text-[10px] font-bold tracking-widest hover:bg-white/5 transition-all duration-500">
                             SAY HELLO
                         </a>
                     </div>
@@ -242,7 +313,7 @@
     <!-- 02. About Me (Enhanced Spotlight) -->
     <section id="about" class="px-8 lg:px-24 bg-white/[0.01]">
         <div class="max-w-7xl w-full grid lg:grid-cols-2 gap-20 items-center">
-            
+
             <div class="space-y-10 reveal">
                 <div class="inline-block px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg">
                     <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase">The Identity</h2>
@@ -251,7 +322,9 @@
                     Nazim CP <br> <span class="text-slate-500 italic">Code Architect.</span>
                 </h3>
                 <p class="text-slate-400 text-lg font-light leading-relaxed max-w-xl">
-                    I translate complex business requirements into seamless, scalable technical solutions. My approach combines the structural integrity of backend engineering with the aesthetic precision of frontend design.
+                    I translate complex business requirements into seamless, scalable technical solutions. My approach
+                    combines the structural integrity of backend engineering with the aesthetic precision of frontend
+                    design.
                 </p>
                 <div class="grid grid-cols-2 gap-10 py-6 border-y border-white/5">
                     <div>
@@ -259,8 +332,9 @@
                         <span class="text-xl font-medium">Kerala, India</span>
                     </div>
                     <div>
-                        <span class="text-[10px] text-slate-600 tracking-widest uppercase block mb-2">Specialization</span>
-                        <span class="text-xl font-medium">SaaS & Fintech</span>
+                        <span
+                            class="text-[10px] text-slate-600 tracking-widest uppercase block mb-2">Specialization</span>
+                        <span class="text-xl font-medium">Iot & Backend</span>
                     </div>
                 </div>
             </div>
@@ -272,7 +346,8 @@
                         <div class="dot red"></div>
                         <div class="dot yellow"></div>
                         <div class="dot green"></div>
-                        <div class="ml-4 text-[10px] text-slate-500 tracking-widest font-sans uppercase">manifest.json — VS Code</div>
+                        <div class="ml-4 text-[10px] text-slate-500 tracking-widest font-sans uppercase">manifest.json —
+                            VS Code</div>
                     </div>
                     <div class="code-content">
                         <div class="code-line">
@@ -281,11 +356,13 @@
                         </div>
                         <div class="code-line">
                             <span class="line-number">2</span>
-                            <span>&nbsp;&nbsp;<span class="property">"full_name"</span>: <span class="string">"Nazim CP"</span>,</span>
+                            <span>&nbsp;&nbsp;<span class="property">"full_name"</span>: <span class="string">"Nazim
+                                    CP"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">3</span>
-                            <span>&nbsp;&nbsp;<span class="property">"title"</span>: <span class="string">"Full Stack Architect"</span>,</span>
+                            <span>&nbsp;&nbsp;<span class="property">"title"</span>: <span class="string">"Full Stack
+                                    Architect"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">4</span>
@@ -293,7 +370,8 @@
                         </div>
                         <div class="code-line">
                             <span class="line-number">5</span>
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Next.js"</span>, <span class="string">"Flutter"</span>, <span class="string">"Node"</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"Javascript"</span>, <span
+                                    class="string">"Django"</span>, <span class="string">"Node"</span></span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">6</span>
@@ -301,11 +379,13 @@
                         </div>
                         <div class="code-line">
                             <span class="line-number">7</span>
-                            <span>&nbsp;&nbsp;<span class="property">"status"</span>: <span class="string">"Ready for impact"</span>,</span>
+                            <span>&nbsp;&nbsp;<span class="property">"status"</span>: <span class="string">"Ready for
+                                    impact"</span>,</span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">8</span>
-                            <span>&nbsp;&nbsp;<span class="property">"philosophy"</span>: <span class="string">"Simplicity over Complexity"</span></span>
+                            <span>&nbsp;&nbsp;<span class="property">"philosophy"</span>: <span
+                                    class="string">"Simplicity over Complexity"</span></span>
                         </div>
                         <div class="code-line">
                             <span class="line-number">9</span>
@@ -325,7 +405,7 @@
                 <h2 class="text-[10px] font-bold tracking-[0.4em] text-indigo-400 uppercase mb-4">02. Stack</h2>
                 <div class="h-[1px] w-full bg-white/5"></div>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-16">
                 <!-- Frontend -->
                 <div class="space-y-8 reveal">
@@ -380,14 +460,19 @@
 
             <div class="space-y-0">
                 <div class="timeline-item relative pl-10 pb-16 reveal">
-                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2022 — Present</span>
+                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2022 —
+                        Present</span>
                     <h4 class="text-2xl font-bold">Senior Full Stack Developer</h4>
-                    <p class="text-slate-400 mt-4 leading-relaxed">Developing production-ready modules for enterprise-grade applications, focusing on performance optimization and scalable architecture.</p>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Developing production-ready modules for
+                        enterprise-grade applications, focusing on performance optimization and scalable architecture.
+                    </p>
                 </div>
                 <div class="timeline-item relative pl-10 pb-16 reveal">
-                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2020 — 2022</span>
+                    <span class="text-[10px] font-bold text-slate-500 block mb-2 uppercase tracking-widest">2020 —
+                        2022</span>
                     <h4 class="text-2xl font-bold">Product Engineer</h4>
-                    <p class="text-slate-400 mt-4 leading-relaxed">Managed end-to-end product delivery from conceptual design to deployment in the SaaS space.</p>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Managed end-to-end product delivery from conceptual
+                        design to deployment in the SaaS space.</p>
                 </div>
             </div>
         </div>
@@ -402,22 +487,142 @@
             </div>
 
             <div class="space-y-0">
-                <div class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">E-Commerce</span>
-                        <h3 class="text-4xl md:text-6xl font-light">Luxe Mart</h3>
-                        <p class="text-slate-500 max-w-sm text-sm">Premium marketplace ecosystem built with Next.js and Stripe.</p>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Healthcare
+                            Technology</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Medpro</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Integrated provider of healthcare science and
+                            technology solutions.
+                        </p>
                     </div>
-                    <a href="#" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Technical
+                            Services</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Sawaed Alamal</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Reliable technical services company delivering
+                            maintenance and
+                            support solutions.</p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Finance &
+                            Accounting</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Magical Ledger Accounts LLC</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Trusted accounting and financial services firm based
+                            in Dubai, UAE.
+                        </p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Interior &
+                            Furniture</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Azinco Interiors</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Modern sofa company delivering customized and stylish
+                            seating
+                            solutions.
+                        </p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Consulting &
+                            Care</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Raha Care</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Professional consulting center offering guidance and
+                            personal
+                            development support.</p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
                 </div>
 
-                <div class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
                     <div class="space-y-4">
-                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Data Flow</span>
-                        <h3 class="text-4xl md:text-6xl font-light">Nova Analytics</h3>
-                        <p class="text-slate-500 max-w-sm text-sm">Complex data visualization for infrastructure monitoring.</p>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Education
+                            Portal</span>
+                        <h3 class="text-4xl md:text-6xl font-light">MIM Islamic School</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Comprehensive exam portal for managing student
+                            assessments and
+                            results.
+                        </p>
                     </div>
-                    <a href="#" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+
+
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Digital
+                            Publication</span>
+                        <h3 class="text-4xl md:text-6xl font-light">The Root</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">English magazine portal for publishing articles and
+                            creative content.
+                        </p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Hospitality
+                            Solution</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Online Hotel Menu</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Digital menu system designed for seamless hotel and
+                            restaurant
+                            experiences.
+                        </p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">Library
+                            System</span>
+                        <h3 class="text-4xl md:text-6xl font-light">Advanced Level LMS</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Smart library management system for organizing and
+                            tracking resources
+                            efficiently.
+                        </p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
+                </div>
+                <div
+                    class="project-card py-16 reveal flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-slate-500 tracking-widest uppercase">E-Commerce</span>
+                        <h3 class="text-4xl md:text-6xl font-light">X Store</h3>
+                        <p class="text-slate-500 max-w-sm text-sm">Online clothing brand offering modern fashion through
+                            a digital
+                            storefront.
+                        </p>
+                    </div>
+                    <a href="#"
+                        class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">→</a>
                 </div>
             </div>
         </div>
@@ -426,25 +631,32 @@
     <!-- 06. Contact -->
     <section id="contact" class="px-8 lg:px-24">
         <div class="max-w-5xl w-full reveal">
-            <h2 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-none mb-12">Nazim <span class="text-indigo-500">CP.</span></h2>
+            <h2 class="text-7xl md:text-[10rem] font-bold tracking-tighter leading-none mb-12">Nazim <span
+                    class="text-indigo-500">CP.</span></h2>
             <div class="grid md:grid-cols-2 gap-20">
                 <div class="space-y-8">
-                    <p class="text-slate-400 text-xl leading-relaxed">Available for freelance and permanent opportunities. Let's build the future together.</p>
+                    <p class="text-slate-400 text-xl leading-relaxed">Available for freelance and permanent
+                        opportunities. Let's build the future together.</p>
                     <div class="space-y-2">
                         <span class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Direct Line</span>
-                        <a href="mailto:nazimcp@gmail.com" class="text-2xl md:text-4xl font-light block hover:text-indigo-400 transition underline underline-offset-8">nazimcp@gmail.com</a>
+                        <a href="mailto:nazimcp@gmail.com"
+                            class="text-2xl md:text-4xl font-light block hover:text-indigo-400 transition underline underline-offset-8">nazimcp@gmail.com</a>
                     </div>
                 </div>
                 <div class="flex flex-col justify-end space-y-4 md:items-end">
-                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">LinkedIn</a>
-                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">GitHub</a>
-                    <a href="#" class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">Behance</a>
+                    <a href="#"
+                        class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">LinkedIn</a>
+                    <a href="#"
+                        class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">GitHub</a>
+                    <a href="#"
+                        class="text-xs font-bold tracking-widest hover:text-indigo-400 transition uppercase">Behance</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="p-10 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold tracking-[0.5em] text-slate-700 uppercase border-t border-white/5 gap-4">
+    <footer
+        class="p-10 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold tracking-[0.5em] text-slate-700 uppercase border-t border-white/5 gap-4">
         <span>© 2024 Nazim CP — All Rights Reserved</span>
         <div class="flex gap-8">
             <a href="#home">Back to Top</a>
@@ -459,7 +671,7 @@
         window.addEventListener('mousemove', (e) => {
             dot.style.left = `${e.clientX}px`;
             dot.style.top = `${e.clientY}px`;
-            
+
             setTimeout(() => {
                 outline.style.left = `${e.clientX - 20}px`;
                 outline.style.top = `${e.clientY - 20}px`;
@@ -473,8 +685,8 @@
         document.querySelectorAll('.btn-magnetic').forEach((m) => {
             m.addEventListener('mousemove', (e) => {
                 const rect = m.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width/2;
-                const y = e.clientY - rect.top - rect.height/2;
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
                 m.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px)`;
                 outline.style.transform = 'scale(1.5)';
             });
@@ -494,7 +706,7 @@
             height = window.innerHeight;
             canvas.width = width;
             canvas.height = height;
-            stars = Array.from({length: 80}, () => ({
+            stars = Array.from({ length: 80 }, () => ({
                 x: Math.random() * width,
                 y: Math.random() * height,
                 size: Math.random() * 1.5,
@@ -503,14 +715,14 @@
         }
 
         function drawStars() {
-            ctx.clearRect(0,0,width,height);
+            ctx.clearRect(0, 0, width, height);
             ctx.fillStyle = "white";
             stars.forEach(s => {
                 s.y -= s.speed;
-                if(s.y < 0) s.y = height;
+                if (s.y < 0) s.y = height;
                 ctx.globalAlpha = 0.2;
                 ctx.beginPath();
-                ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fill();
             });
             requestAnimationFrame(drawStars);
@@ -522,7 +734,7 @@
 
         // Reveal Observer
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
@@ -534,4 +746,5 @@
         });
     </script>
 </body>
+
 </html>
